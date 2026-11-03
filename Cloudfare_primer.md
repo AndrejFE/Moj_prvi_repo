@@ -35,17 +35,17 @@ Da si bomo lažje predstavljali, si poglejmo analogijo z **nočnim klubom**. 
 
 Včasih so podjetja za vsako od teh funkcij kupovala drago strojno opremo (strežnike). Danes vse to najamemo v oblaku: 
 
+```
 +-----------------------------------------------------------------+
-
 |                      TRADICIONALNI DOSTOP                       |
-|  Uporabnik ----> [ Lokalni požarni zid ] ----> [ Lokalna baza ]  |
+|  Uporabnik ----> [ Lokalni požarni zid ] ----> [ Lokalna baza ] |
 +-----------------------------------------------------------------+
 
 +-----------------------------------------------------------------+
-
 |                    MODERNI OBLAČNI DOSTOP                       |
-|  Uporabnik ----> [ SECaaS (Cloudflare) ] ----> [ IDaaS (Google) ]|
+| Uporabnik ----> [ SECaaS (Cloudflare) ] ----> [ IDaaS (Google) ]|
 +-----------------------------------------------------------------+
+```
 
 * **SaaS (Software-as-a-Service):** Spletna aplikacija ali portal, ki ga želimo zaščititi.
 * **IDaaS (Identity-as-a-Service):** Storitev, ki preverja, kdo smo (npr. ko kliknete "Prijavi se z Google računom", Google nastopa kot IDaaS).
