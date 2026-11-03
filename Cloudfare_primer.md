@@ -55,26 +55,24 @@ Včasih so podjetja za vsako od teh funkcij kupovala drago strojno opremo (stre�
 
 Preden začnemo s klikanjem, si poglejmo spodnjo skico. Naša spletna stran bo javno dostopna na internetu. Cloudflare bo deloval kot "ščit" oz. posrednik (Proxy). 
 
+```
                   +--------------------------+
-
                   |    Nepooblaščen obisk    |
                   +--------------------------+
                                |
                                v
 +------------+      +--------------------+      +--------------------+
-
 |  Študent   | ---> |  CLOUDFLARE EDGE   | <--- |  Heker / Napadalec |
 | (Uporabnik)|      |  (Požarni zid &    |      |                    |
 +------------+      |   Avtorizacija)    |      +--------------------+
       |             +--------------------+
-
       |                       |
       v                       v
 +------------+      +--------------------+
-
 |   IDaaS    |      |  SPLETNA STRAN     |
 |  (Google)  |      |  (Cilj vaje)       |
 +------------+      +--------------------+
+```
 
 1. Uporabnik želi obiskati spletno stran.
 2. Cloudflare prestreže zahtevo in reče: *"Stoj! Najprej se izkaži."*
@@ -155,23 +153,40 @@ Kot administratorji moramo vedeti, kdo je poskušal vstopiti v naš sistem. 
 3. Pred vami se bo izrisala tabela dogodkov.
 4. Poiščite svoja zadnja dva poskusa prijave.
 
+```
 +---------------------+-------------------+----------+--------+
-
 | ČAS POSKUSA         | UPORABNIK (EMAIL) | IP NASLOV| UKREP  |
 +---------------------+-------------------+----------+--------+
-
 | 03.11.2026 14:10:22 | heker@gmail.com   | 193.2... | BLOCKED|
 | 03.11.2026 14:12:05 | jan@student.uni...| 84.22... | ALLOWED|
 +---------------------+-------------------+----------+--------+
+```
 
 *Spoznanje:* Brez zapletenih baz podatkov ali branja tekstovnih JSON/XML datotek imate popoln grafični pregled nad tem, kdo, kdaj in od kod je dostopal do vaše aplikacije. To je **Accounting**. 
 
-### 6. Zaključek in poročilo o vaji
+## 6. Zaključna vprašanja za poročilo o vaji
 
-Z izvedbo te vaje ste dokazali, da za vrhunsko kibernetsko varnost ni potrebno zapleteno programiranje, če znamo pravilno uporabiti storitve v oblaku (**aaS**). 
+Študenti, na spodnja vprašanja odgovorite z lastnimi besedami na podlagi opravljenih korakov in opažanj med vajo.
 
-### Kratka vprašanja za končno poročilo:
+### Glavna vprašanja (Ključni koncepti)
 
 1. S svojimi besedami opiši razliko med Avtentikacijo in Avtorizacijo na primeru te vaje.
 2. Katero storitev v tej vaji smo prepoznali kot **IDaaS** in katero kot **SECaaS**?
 3. Zakaj je model Zero Trust varnejši od klasičnega gesla, ki bi ga preprosto programirali neposredno na spletno stran?
+
+### Dodatna vprašanja za razmislek
+
+#### Sklop A: Delovanje AAA v praksi
+4. Ko ste v nadzorni plošči Zero Trust odprli zavihek "Logs" (Dnevniki), kateri del koncepta AAA ste s tem pregledovali in zakaj je ta del pomemben za varnostnega inženirja?
+5. Predstavljajte si, da napadalec pozna vaše pravilno študentsko geslo, vendar poskuša do strani dostopati iz države, ki ste jo v požarnem zidu blokirali. Kateri del AAA sistema ga bo ustavil – avtentikacija ali avtorizacija? Utemeljite odgovor.
+6. Zakaj je beleženje dogodkov (Accounting) pomembno tudi takrat, ko so vsi poskusi prijav uspešni in v sistemu ni zaznanih nobenih napadov?
+
+#### Sklop B: Razumevanje modelov "as-a-Service"
+7. Na vajah niste programirali lastnega obrazca za registracijo, prav tako niste ustvarili baze podatkov za shranjevanje študentskih gesel. Pojasnite, kako ste ta problem rešili z uporabo storitev v oblaku.
+8. Pojasnite razliko med ponudnikom identitete (Identity Provider - npr. Google) in ponudnikom varnostne platforme (npr. Cloudflare). Kako ti dve vlogi sodelujeta pri zaščiti spletne strani?
+9. Kakšna je glavna prednost uporabe modelov "aaS" (kot sta IDaaS in SECaaS) za razvijalce spletnih strani v primerjavi s tem, da bi celoten varnostni sistem programirali sami od začetka?
+
+#### Sklop C: Varnostni scenariji in Zero Trust
+10. Med vajo ste poskusili dostopati do strani z napačnim e-poštnim naslovom. Opišite, kaj se je izpisalo na zaslonu in kaj se je v istem trenutku zabeležilo v administratorjevem dnevniku (Logs).
+11. Kaj bi se zgodilo, če bi napadalec uspešno vdrl v vaš osebni profil na Cloudflaru? Do katerih podatkov in sistemov bi s tem pridobil dostop?
+12. Predlagajte dodatno varnostno pravilo (poleg preverjanja končnice e-poštnega naslova), ki bi ga lahko dodali v Cloudflare vmesnik, da bi še bolj zmanjšali možnost nepooblaščenega dostopa (npr. omejitev glede na lokacijo ali čas).
